@@ -21,7 +21,7 @@ tcgaquery <- function(tcgadata,projectid,datacategory,datatype,sampletype) {
 }	
 
 querydownload<-function(data,destination){
-  t<-blob_container("https://storagepurviewmg.blob.core.windows.net/testdata1/",sas ="sp=rl&st=2022-07-25T19:47:41Z&se=2022-10-01T03:47:41Z&spr=https&sv=2021-06-08&sr=c&sig=TVUhb4T%2Fk%2BNW5VO2Ej21lZyqkBtGBdamn0kaYX3%2BahY%3D")
+  t<-AzureStor::blob_container("https://storagepurviewmg.blob.core.windows.net/testdata1/",sas ="sp=rl&st=2022-07-25T19:47:41Z&se=2022-10-01T03:47:41Z&spr=https&sv=2021-06-08&sr=c&sig=TVUhb4T%2Fk%2BNW5VO2Ej21lZyqkBtGBdamn0kaYX3%2BahY%3D")
   files <- file.path(
     ret$project, "harmonized",
     gsub(" ","_",data$data.category),

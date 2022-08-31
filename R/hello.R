@@ -1,3 +1,6 @@
+devtools::install_github('Azure/AzureStor')
+library(AzureStor)
+library(AzureRMR)
 tcgaquery <- function(tcgadata,projectid,datacategory,datatype,sampletype) {
   if (missing(sampletype)) {
     sampletype <- unique(tcgadata$sample_type)

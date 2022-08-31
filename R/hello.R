@@ -1,18 +1,38 @@
-# Hello, world!
-#
-# This is an example function named 'hello' 
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Cmd + Shift + B'
-#   Check Package:             'Cmd + Shift + E'
-#   Test Package:              'Cmd + Shift + T'
+tcgaquery <- function(tcgadata,projectid,datacategory,datatype,sampletype) {
+  if (missing(sampletype)) {
+    sampletype <- unique(tcgadata$sample_type)
+  }
+  data<-tcgadata %>% 
+    filter((project %in% projectid) & data_category==datacategory & data_type == datatype & sample_type %in% sampletype)
+  ret <- data.frame(
+    results = I(list(data)),
+    project = unique(data$project),
+    data.category = unique(data$data_category),
+    data.type = unique(data$data_type),
+    access = I(list(unique(data$access))),
+    legacy=FALSE,
+    experimental.strategy =  I(list(unique(data$experimental_strategy))),
+    sample.type = I(list(unique(data$sample_type)))
+  )
+  return(ret)
+}	
 
-hello <- function() {
-  print("Hello, world!")
+querydownload<-function(data,destination){
+  t<-blob_container("https://storagepurviewmg.blob.core.windows.net/testdata1/",sas ="sp=rl&st=2022-07-25T19:47:41Z&se=2022-10-01T03:47:41Z&spr=https&sv=2021-06-08&sr=c&sig=TVUhb4T%2Fk%2BNW5VO2Ej21lZyqkBtGBdamn0kaYX3%2BahY%3D")
+  files <- file.path(
+    ret$project, "harmonized",
+    gsub(" ","_",data$data.category),
+    gsub(" ","_",data$data.type))
+  files <- file.path(destination, files)
+  dir.create(files,recursive = TRUE)
+  setwd(files)
+  for(i in 1:nrow(data$results[[1]])) {
+    current<-getwd()
+    dir<-ret$results[[1]][i,1]
+    dir.create(dir)
+    setwd(dir)
+    file=file.path(ret$results[[1]][i,1],ret$results[[1]][i,5])
+    download_blob(t, file)
+    setwd(current)
+  }
 }

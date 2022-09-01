@@ -1,2 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 import(AzureStor)
+importFrom(AzureStor,blob_container)
+importFrom(AzureStor,blob_download)

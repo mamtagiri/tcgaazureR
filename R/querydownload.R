@@ -1,6 +1,6 @@
 require(AzureStor)
 querydownload<-function(data,destination){
-  t<-AzureStor:::blob_container("https://storagepurviewmg.blob.core.windows.net/testdata1/",sas ="sp=rl&st=2022-07-25T19:47:41Z&se=2022-10-01T03:47:41Z&spr=https&sv=2021-06-08&sr=c&sig=TVUhb4T%2Fk%2BNW5VO2Ej21lZyqkBtGBdamn0kaYX3%2BahY%3D")
+  t<-AzureStor:::blob_container("https://datasettcga.blob.core.windows.net/",sas ="sp=raw&st=2022-09-06T13:30:53Z&se=2022-09-10T21:30:53Z&spr=https&sv=2021-06-08&sr=c&sig=Aw9ZlI7Ia6iK%2Bj8VESVaMSttPHQBcHITs78l8BnNBko%3D")
   files <- file.path(
     data$project, "harmonized",
     gsub(" ","_",data$data.category),
@@ -14,7 +14,7 @@ querydownload<-function(data,destination){
     dir.create(dir)
     setwd(dir)
     file=file.path(data$results[[1]][i,1],data$results[[1]][i,5])
-    download_blob(t, file)
+    download_blob(t, paste0("TCGA/",file)
     setwd(current)
   }
 }

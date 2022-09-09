@@ -6,6 +6,7 @@ querydownload<-function(data,destination){
     gsub(" ","_",data$data.category),
     gsub(" ","_",data$data.type))
   files <- file.path(destination, files)
+  maindir<-getwd()
   dir.create(files,recursive = TRUE)
   setwd(files)
   for(i in 1:nrow(data$results[[1]])) {
@@ -17,4 +18,5 @@ querydownload<-function(data,destination){
     download_blob(t, paste0("TCGA/",file)
     setwd(current)
   }
+  setwd(maindir)
 }

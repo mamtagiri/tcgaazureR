@@ -10,13 +10,12 @@ querydownload<-function(data,destination){
   dir.create(files,recursive = TRUE)
   setwd(files)
   for(i in 1:nrow(data$results[[1]])) {
-    current<-getwd()
+    setwd(files)
     dir<-data$results[[1]][i,1]
     dir.create(dir)
     setwd(dir)
     file=file.path(data$results[[1]][i,1],data$results[[1]][i,5])
     download_blob(t, paste0("TCGA/",file)
-    setwd(current)
   }
   setwd(maindir)
 }

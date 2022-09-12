@@ -16,7 +16,7 @@ querydownload<-function(data,destination){
     file=file.path(query$results[[1]][i,1],query$results[[1]][i,5])
     download_blob(t, file)
     setwd(maindir)
-  setwd(current)
-  }
   
+  }
+  setwd(current)
 }

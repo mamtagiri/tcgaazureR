@@ -1,5 +1,5 @@
 querydownload<-function(data,destination){
-  t<-blob_container("https://storagepurviewmg.blob.core.windows.net/testdata1/",sas ="sp=rl&st=2022-07-25T19:47:41Z&se=2022-10-01T03:47:41Z&spr=https&sv=2021-06-08&sr=c&sig=TVUhb4T%2Fk%2BNW5VO2Ej21lZyqkBtGBdamn0kaYX3%2BahY%3D")
+  t<-blob_container("https://datasettcga.blob.core.windows.net/",sas ="sp=r&st=2022-09-23T17:51:10Z&se=2025-09-02T01:51:10Z&spr=https&sv=2021-06-08&sr=c&sig=k44eVLkcrrJZCMrqijJjywE4G%2BG%2BC0f7CZ0xZFlQB0A%3D")
   files <- file.path(
     query$project, "harmonized",
     gsub(" ","_",data$data.category),

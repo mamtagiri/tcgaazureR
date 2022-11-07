@@ -1,5 +1,5 @@
 querydownload<-function(data,destination){
-  t<-blob_container("https://datasettcga.blob.core.windows.net/",sas ="sp=r&st=2022-09-23T17:51:10Z&se=2025-09-02T01:51:10Z&spr=https&sv=2021-06-08&sr=c&sig=k44eVLkcrrJZCMrqijJjywE4G%2BG%2BC0f7CZ0xZFlQB0A%3D")
+  t<-blob_container("https://datasettcga.blob.core.windows.net/dataset",sas ="sp=rl&st=2022-11-07T16:59:11Z&se=2030-12-01T00:59:11Z&spr=https&sv=2021-06-08&sr=c&sig=A4AWnyISkPi9JZRanNwcQNgAagxUih1J%2FeJ9T5kHyfc%3D")
   files <- file.path(
     query$project, "harmonized",
     gsub(" ","_",data$data.category),
@@ -14,9 +14,10 @@ querydownload<-function(data,destination){
     dir.create(dir)
     setwd(dir)
     file=file.path(query$results[[1]][i,1],query$results[[1]][i,5])
-    download_blob(t, file)
+    filename<-paste0("TCGA/",file)
+    download_blob(t, filename)
     setwd(maindir)
-  
+    
   }
   setwd(current)
 }

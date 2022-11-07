@@ -1,5 +1,6 @@
-querydownload<-function(data,destination){
-  t<-blob_container("https://datasettcga.blob.core.windows.net/dataset",sas ="sp=rl&st=2022-11-07T16:59:11Z&se=2030-12-01T00:59:11Z&spr=https&sv=2021-06-08&sr=c&sig=A4AWnyISkPi9JZRanNwcQNgAagxUih1J%2FeJ9T5kHyfc%3D")
+
+querydownload<-function(data,destination,container){
+  t<-container
   files <- file.path(
     data$project, "harmonized",
     gsub(" ","_",data$data.category),
